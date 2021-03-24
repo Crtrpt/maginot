@@ -1,0 +1,1 @@
+### 安装一个app把 android手机变成 iot网关
