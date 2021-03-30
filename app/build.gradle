@@ -4,7 +4,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.dj.titan"
+        applicationId "com.dj.iotlite"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
@@ -37,6 +37,12 @@ dependencies {
         exclude group: "org.codehaus.classworlds"
         exclude group: "org.codehaus.plexus"
     }
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
+    //gson 格式化
+    implementation 'com.google.code.gson:gson:2.8.6'
+    //二维码
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
 }
 
 

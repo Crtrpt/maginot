@@ -1,4 +1,4 @@
-package com.dj.titan;
+package com.dj.iotlite;
 
 import org.junit.Test;
 
