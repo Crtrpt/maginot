@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Titan</string>
+    <string name="app_name">IotLite</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">Iotlite</string>
 </resources>
