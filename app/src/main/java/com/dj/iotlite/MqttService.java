@@ -31,7 +31,6 @@ public class MqttService extends Service {
 
     private void startTimer() {
         Timer timer = new Timer();
-        var a="aaa";
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
