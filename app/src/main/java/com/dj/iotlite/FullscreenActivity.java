@@ -36,7 +36,9 @@ public class FullscreenActivity extends AppCompatActivity {
 
         DataGate dataGate=new DataGate();
         dataGate.run(this);
-        bindService(new Intent(this,MqttService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+        bindService(new Intent(this, IotService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+
+        //执行
         TLLexer lexer = new TLLexer(CharStreams.fromString("print('xxxxxxxxxxxxxxx');"));
         TLParser parser = new TLParser(new CommonTokenStream(lexer));
         parser.parse();

@@ -44,7 +44,7 @@
         </activity>
 
         <service
-            android:name=".MqttService"
+            android:name=".IotService"
             android:enabled="true"
             android:exported="true" />
     </application>

@@ -4,29 +4,26 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import android.util.Xml;
+
+import com.dj.iotlite.boot.Boot;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.MqttPersistable;
-import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
-import java.util.Enumeration;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MqttService extends Service {
+public class IotService extends Service {
 
     MqttClient mqttClient = null;
 
-    public MqttService() {
+    public IotService() {
     }
 
     private void startTimer() {
@@ -35,9 +32,9 @@ public class MqttService extends Service {
             @Override
             public void run() {
                 try {
-                    String topic = "/android/" + DataGate.propertys.get("android_id");
+                    String topic = Config.getTopic();
                     Log.d(this.getClass().getName(), "topic" + topic);
-                    mqttClient.publish(topic, DataGate.getProperty(), 0, false);
+                    mqttClient.publish(Config.getTopic(), DataGate.getProperty(), 0, false);
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
@@ -47,11 +44,11 @@ public class MqttService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
+        Boot.getClassByAnnotation();
         Log.d(this.getClass().getName(), "Service 线程" + Thread.currentThread().getId());
 
-
         try {
-            mqttClient = new MqttClient("tcp://broker.emqx.io:1883", "androidMqtt", new MemoryPersistence());
+            mqttClient = new MqttClient(Config.broker, Config.clientId, new MemoryPersistence());
 
             mqttClient.setCallback(new MqttCallback() {
                 @Override
@@ -72,7 +69,11 @@ public class MqttService extends Service {
             MqttConnectOptions options = new MqttConnectOptions();
             options.setAutomaticReconnect(true);
             IMqttToken mq = mqttClient.connectWithResult(options);
-            mqttClient.subscribe("/test/android/");
+            if(mqttClient.isConnected()){
+                mqttClient.subscribe("/default/android/");
+                SignupCapability();
+            }
+
 
             startTimer();
 
@@ -82,6 +83,11 @@ public class MqttService extends Service {
         }
 
         return null;
+    }
+
+    private void SignupCapability() {
+        Log.d(this.getClass().getName(), "注册能力: ");
+
     }
 
 
