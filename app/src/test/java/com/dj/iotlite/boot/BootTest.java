@@ -8,7 +8,6 @@ public class BootTest {
 
     @Test
     public void getClassByAnnotation() {
-        Boot boot=new Boot();
-        boot.getClassByAnnotation();
+
     }
 }

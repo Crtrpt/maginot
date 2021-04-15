@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Maginot</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">Motlite</string>
+    <string name="dummy_content">Maginot</string>
+    <string name="lastLog"></string>
 </resources>

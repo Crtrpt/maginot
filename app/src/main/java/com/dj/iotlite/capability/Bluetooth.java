@@ -3,11 +3,11 @@ package com.dj.iotlite.capability;
 import com.dj.iotlite.CapabilityInterface;
 import com.dj.iotlite.annotation.Capability;
 
-@Capability(value="power")
-public class PowerCapabilityInterfaceImpl implements CapabilityInterface {
+@Capability(value="blue touch")
+public class Bluetooth implements CapabilityInterface {
 
-    String name="power";
-
+    String name="blue touch";
+    
     @Override
     public String getName() {
         return name;

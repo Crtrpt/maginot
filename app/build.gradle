@@ -49,10 +49,8 @@ dependencies {
 
     //二维码
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
-
-    // https://mvnrepository.com/artifact/org.reflections/reflections
-    implementation  'org.reflections:reflections:0.9.12'
-
+    //event bus
+    implementation 'org.greenrobot:eventbus:3.2.0'
     // https://mvnrepository.com/artifact/io.netty/netty-all
     implementation group: 'io.netty', name: 'netty-all', version: '4.1.63.Final'
 
