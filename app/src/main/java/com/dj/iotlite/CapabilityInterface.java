@@ -6,7 +6,14 @@ import java.util.HashMap;
 
 public interface CapabilityInterface {
 
-    String getName();
+    default String getName() {
+        return "";
+    }
+
+    ;
+
+    default void setName() {
+    }
 
     default String getDesc() {
         return "";
@@ -22,7 +29,13 @@ public interface CapabilityInterface {
 
     void setAvailable(boolean isAvailable);
 
-    default void  init(){};
+    default void init() {
+    }
 
-    default void  stop(){};
+    ;
+
+    default void stop() {
+    }
+
+    ;
 }

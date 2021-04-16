@@ -14,7 +14,10 @@ import com.dj.iotlite.actions.Read;
 import com.dj.iotlite.actions.Reset;
 import com.dj.iotlite.actions.Update;
 import com.dj.iotlite.capability.Bluetooth;
+import com.dj.iotlite.capability.Coap;
 import com.dj.iotlite.capability.Ethernet;
+import com.dj.iotlite.capability.Modbus;
+import com.dj.iotlite.capability.Mqtt;
 import com.dj.iotlite.capability.Power;
 import com.dj.iotlite.capability.Wifi;
 import com.dj.iotlite.events.LogEvent;
@@ -56,6 +59,9 @@ public class Boot {
         Context.capability.add(new Wifi());
         Context.capability.add(new Power());
         Context.capability.add(new Ethernet());
+        Context.capability.add(new Mqtt());
+        Context.capability.add(new Modbus());
+        Context.capability.add(new Coap());
     }
 
     public void  initActions(){

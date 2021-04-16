@@ -23,6 +23,9 @@ allprojects {
         maven {
             url "https://repo.eclipse.org/content/repositories/paho-releases/"
         }
+        maven {
+            url "https://jcenter.bintray.com"
+        }
     }
 }
 

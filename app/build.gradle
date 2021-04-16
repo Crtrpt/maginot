@@ -46,11 +46,12 @@ dependencies {
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
     //gson 格式化
     implementation 'com.google.code.gson:gson:2.8.6'
-
     //二维码
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
     //event bus
     implementation 'org.greenrobot:eventbus:3.2.0'
+    //mqtt服务器
+    implementation group: 'io.moquette', name: 'moquette-broker', version: '0.11'
     // https://mvnrepository.com/artifact/io.netty/netty-all
     implementation group: 'io.netty', name: 'netty-all', version: '4.1.63.Final'
 
