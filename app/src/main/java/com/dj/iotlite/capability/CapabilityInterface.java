@@ -1,7 +1,8 @@
-package com.dj.iotlite;
+package com.dj.iotlite.capability;
 
 import com.dj.iotlite.capability.Bluetooth;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public interface CapabilityInterface {
@@ -25,14 +26,12 @@ public interface CapabilityInterface {
 
     void setName(String name);
 
-    void run();
+    void run() throws IOException;
 
     void setAvailable(boolean isAvailable);
 
     default void init() {
-    }
-
-    ;
+    };
 
     default void stop() {
     }

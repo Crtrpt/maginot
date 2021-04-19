@@ -5,6 +5,13 @@ import android.util.Log;
 import com.dj.iotlite.events.LogEvent;
 import com.google.gson.Gson;
 
+import net.crtrpt.EvalVisitor;
+import net.crtrpt.Function;
+import net.crtrpt.Scope;
+import net.crtrpt.TLValue;
+import net.crtrpt.gen.TLLexer;
+import net.crtrpt.gen.TLParser;
+
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -15,17 +22,12 @@ import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.TerminalNode;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.BitSet;
 import java.util.HashMap;
 
-import tl.antlr4.EvalVisitor;
-import tl.antlr4.Function;
-import tl.antlr4.Scope;
-import tl.antlr4.TLLexer;
-import tl.antlr4.TLParser;
-import tl.antlr4.TLValue;
 
 public class Exec implements Actions{
     @Override
@@ -61,7 +63,9 @@ public class Exec implements Actions{
         });
         ParseTree tree =parser.parse();
         //增加内嵌的动态能力
-        EvalVisitor visitor = new EvalVisitor(new Scope(),new HashMap<>());
+        HashMap<String, Function> functions=new HashMap<>();
+
+        EvalVisitor visitor = new EvalVisitor(new Scope(),functions);
         TLValue v= visitor.visit(tree);
         Gson gson=new Gson();
         String s= gson.toJson(v);

@@ -1,6 +1,6 @@
 [submodule "vm"]
 	path = vm
-	url = git@github.com:Crtrpt/tiny-language-antlr4.git
+	url = git@github.com:Crtrpt/tiny-language.git
 [submodule "mqtt"]
 	path = mqtt
 	url = git@github.com:Crtrpt/moquette.git

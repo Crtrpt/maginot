@@ -1,11 +1,10 @@
 package com.dj.iotlite;
 
 import com.dj.iotlite.actions.Actions;
+import com.dj.iotlite.capability.CapabilityInterface;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 public class Context {
     HashMap<String,Object> property=new HashMap<>();

@@ -1,6 +1,5 @@
 package com.dj.iotlite.capability;
 
-import com.dj.iotlite.CapabilityInterface;
 import com.dj.iotlite.annotation.Capability;
 
 @Capability(value="power")

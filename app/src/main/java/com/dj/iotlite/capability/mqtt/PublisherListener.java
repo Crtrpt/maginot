@@ -1,4 +1,10 @@
 package com.dj.iotlite.capability.mqtt;
 
-public class PublisherListener {
+import io.moquette.interception.AbstractInterceptHandler;
+
+public class PublisherListener extends AbstractInterceptHandler {
+    @Override
+    public String getID() {
+        return null;
+    }
 }

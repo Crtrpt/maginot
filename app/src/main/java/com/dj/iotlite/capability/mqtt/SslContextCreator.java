@@ -1,4 +1,12 @@
 package com.dj.iotlite.capability.mqtt;
 
-public class SslContextCreator {
+import javax.net.ssl.SSLContext;
+
+import io.moquette.spi.security.ISslContextCreator;
+
+public class SslContextCreator  implements ISslContextCreator {
+    @Override
+    public SSLContext initSSLContext() {
+        return null;
+    }
 }

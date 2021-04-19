@@ -23,6 +23,8 @@ android {
     packagingOptions  {
         exclude 'META-INF/plexus/components.xml'
         exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/io.netty.versions.properties'
     }
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
@@ -38,7 +40,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation ('nl.big-o:tiny-language-antlr4:1.0-SNAPSHOT') {
+    implementation ('net.crtrpt:tiny-language:1.0-SNAPSHOT') {
         exclude group: "org.codehaus.classworlds"
         exclude group: "org.codehaus.plexus"
     }
@@ -51,9 +53,10 @@ dependencies {
     //event bus
     implementation 'org.greenrobot:eventbus:3.2.0'
     //mqtt服务器
-    implementation group: 'io.moquette', name: 'moquette-broker', version: '0.11'
+//    implementation group: 'io.moquette', name: 'moquette-broker', version: '0.11'
+    implementation 'io.moquette:moquette-broker:0.11'
     // https://mvnrepository.com/artifact/io.netty/netty-all
-    implementation group: 'io.netty', name: 'netty-all', version: '4.1.63.Final'
+//    implementation group: 'io.netty', name: 'netty-all', version: '4.1.63.Final'
 
 }
 

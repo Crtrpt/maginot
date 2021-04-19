@@ -1,4 +1,6 @@
-package com.dj.iotlite;
+package com.dj.iotlite.capability;
+
+import com.dj.iotlite.capability.CapabilityInterface;
 
 public class CapabilityWarp {
     public Class getClazz() {
