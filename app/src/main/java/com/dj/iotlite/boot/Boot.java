@@ -21,6 +21,7 @@ import com.dj.iotlite.capability.Mqtt;
 import com.dj.iotlite.capability.Power;
 import com.dj.iotlite.capability.Wifi;
 import com.dj.iotlite.events.LogEvent;
+import com.dj.iotlite.utils.JsonUtils;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
@@ -84,7 +85,7 @@ public class Boot {
                 @Override
                 public void messageArrived(String topic, MqttMessage msg) throws Exception {
                     try{
-                        ActionPayload actionPayload = new ActionPayload().fromPayload(msg.getPayload());
+                        ActionPayload actionPayload = JsonUtils.fromPayload(msg.getPayload());
                         Actions actions=Context.actions.get(actionPayload.getAction());
                         if (actions!=null){
                             actions.run(actionPayload);
@@ -99,16 +100,28 @@ public class Boot {
 
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken token) {
-                    Log.d(this.getClass().getName(), "投递完成: " + token.getTopics());
+                    Log.d(this.getClass().getName(), "投递完成: " + token.getTopics()[0]);
                 }
             });
             MqttConnectOptions options = new MqttConnectOptions();
             options.setAutomaticReconnect(true);
-            IMqttToken mq = mqttClient.connectWithResult(options);
-            if (mqttClient.isConnected()) {
-                Log.d(this.getClass().getName(), "订阅: " + com.dj.iotlite.Config.getDeviceTopic());
-                mqttClient.subscribe(com.dj.iotlite.Config.getDeviceTopic());
-                SignupCapability();
+            mqttClient.connect(options);
+//            if (mqttClient.isConnected()) {
+//                Log.d(this.getClass().getName(), "订阅: " + com.dj.iotlite.Config.getDeviceTopic());
+//
+//
+//            }
+            while (mqttClient.isConnected()){
+                if(mqttClient.isConnected()){
+                    mqttClient.subscribe(com.dj.iotlite.Config.getDeviceTopic());
+                    SignupCapability();
+                    break;
+                }
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (MqttException e) {
             Log.d(this.getClass().getName(), "异常: ");
@@ -118,7 +131,8 @@ public class Boot {
 
     private void SignupCapability() throws MqttException {
         EventBus.getDefault().post(new LogEvent("注册设备"));
-        mqttClient.publish(com.dj.iotlite.Config.getProductTopic(), new ActionPayload("signup", Context.capability).getPayloadBytes(), 0, false);
+//        String a= JsonUtils.getPayloadBytes(new ActionPayload("signup", Context.capability);
+        mqttClient.publish(com.dj.iotlite.Config.getProductTopic(),"22222".getBytes(), 0, false);
     }
 
 }

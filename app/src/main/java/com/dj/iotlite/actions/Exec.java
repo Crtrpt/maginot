@@ -3,7 +3,6 @@ package com.dj.iotlite.actions;
 import android.util.Log;
 
 import com.dj.iotlite.events.LogEvent;
-import com.google.gson.Gson;
 
 import net.crtrpt.EvalVisitor;
 import net.crtrpt.Function;
@@ -67,8 +66,5 @@ public class Exec implements Actions{
 
         EvalVisitor visitor = new EvalVisitor(new Scope(),functions);
         TLValue v= visitor.visit(tree);
-        Gson gson=new Gson();
-        String s= gson.toJson(v);
-        EventBus.getDefault().post(new LogEvent("执行结果"+s));
     }
 }

@@ -6,6 +6,6 @@ import net.crtrpt.mqtt.interception.AbstractInterceptHandler;
 public class PublisherListener extends AbstractInterceptHandler {
     @Override
     public String getID() {
-        return null;
+        return "111";
     }
 }

@@ -16,7 +16,7 @@ import android.hardware.SensorManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
-import com.google.gson.Gson;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,11 +30,7 @@ public class DataGate extends BroadcastReceiver {
     static HashMap<String, Object> propertys = new HashMap<>();
 
     public static byte[] getProperty() {
-        IotMessageDto msg = new IotMessageDto();
-        msg.setAction("property");
-        msg.setPayload(getPropertys());
-        Gson gson = new Gson();
-        return gson.toJson(msg).getBytes();
+     return  null;
     }
 
     public void run(FullscreenActivity ctx) {

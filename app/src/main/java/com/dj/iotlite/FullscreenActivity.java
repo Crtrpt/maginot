@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import com.dj.iotlite.events.LogEvent;
 
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.eclipse.paho.client.mqttv3.MqttException;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -24,8 +21,7 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import tl.antlr4.TLLexer;
-import tl.antlr4.TLParser;
+
 
 
 public class FullscreenActivity extends AppCompatActivity {

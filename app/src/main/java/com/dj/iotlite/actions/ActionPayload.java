@@ -3,6 +3,9 @@ package com.dj.iotlite.actions;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+
+import java.io.IOException;
 
 public class ActionPayload {
 
@@ -35,16 +38,6 @@ public class ActionPayload {
         this.payload=payload;
     }
 
-    public ActionPayload  fromPayload(byte[] payload){
-        Gson gson=new Gson();
-        return gson.fromJson(new String(payload),this.getClass());
-    }
 
-    public byte[] getPayloadBytes(){
-        Gson gson=new Gson();
-        String data=gson.toJson(this);
-        Log.d(this.getClass().getName(), "注册能力:"+data);
-        return data.getBytes();
-    }
 
 }

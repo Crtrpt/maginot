@@ -2,6 +2,7 @@ package com.dj.iotlite.actions;
 
 import android.util.Log;
 
+import com.dj.iotlite.Context;
 import com.dj.iotlite.events.LogEvent;
 
 import org.greenrobot.eventbus.EventBus;

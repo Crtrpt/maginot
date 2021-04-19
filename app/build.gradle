@@ -40,10 +40,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation ('net.crtrpt:tiny-language:1.0-SNAPSHOT') {
-        exclude group: "org.codehaus.classworlds"
-        exclude group: "org.codehaus.plexus"
-    }
+
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
     //gson 格式化
@@ -54,7 +51,8 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
     //mqtt服务器
     implementation 'net.crtrpt:mqtt-broker:0.0.1-SNAPSHOT'
-
+    // tl 语言
+    implementation 'net.crtrpt:tiny-language:1.0-SNAPSHOT'
 }
 
 

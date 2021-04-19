@@ -10,14 +10,13 @@ import com.dj.iotlite.events.LogEvent;
 import net.crtrpt.mqtt.broker.Server;
 import net.crtrpt.mqtt.broker.config.IConfig;
 import net.crtrpt.mqtt.broker.config.MemoryConfig;
-import net.crtrpt.mqtt.broker.security.IAuthenticator;
 import net.crtrpt.mqtt.broker.security.IAuthorizatorPolicy;
 import net.crtrpt.mqtt.broker.subscriptions.Topic;
 import net.crtrpt.mqtt.interception.InterceptHandler;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.IOException;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
@@ -26,9 +25,12 @@ import java.util.Properties;
 @Capability(value="mqtt")
 public class Mqtt implements CapabilityInterface {
     IConfig config =new MemoryConfig(new Properties());
+
     public Mqtt(){
-        EventBus.getDefault().post(new LogEvent("启动mqtt服务器"+ NetworkUtils.getLocalIPAddress()));
+
+        this.run();
     }
+
     private final Server mqttBroker = new Server();
 
     @Override
@@ -44,8 +46,9 @@ public class Mqtt implements CapabilityInterface {
     String name;
 
     @Override
-    public void run() throws IOException {
+    public void run()  {
         List<? extends InterceptHandler> userHandlers = Collections.singletonList(new PublisherListener());
+        EventBus.getDefault().post(new LogEvent("开始启动mqtt服务器"+ NetworkUtils.getLocalIPAddress()));
         mqttBroker.startServer(config, userHandlers, new SslContextCreator(), new Authenticator(), new IAuthorizatorPolicy() {
             @Override
             public boolean canWrite(Topic topic, String s, String s1) {

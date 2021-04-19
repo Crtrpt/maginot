@@ -24,21 +24,7 @@ public class IotService extends Service {
     public IotService() {
     }
 
-    private void startTimer() {
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    String topic = Config.getDeviceTopic();
-                    Log.d(this.getClass().getName(), "topic" + topic);
-                    mqttClient.publish(Config.getDeviceTopic(), DataGate.getProperty(), 0, false);
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 5000, 10000);
-    }
+
 
     @Override
     public IBinder onBind(Intent intent) {
