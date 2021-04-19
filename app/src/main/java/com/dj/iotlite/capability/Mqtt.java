@@ -7,6 +7,14 @@ import com.dj.iotlite.capability.mqtt.PublisherListener;
 import com.dj.iotlite.capability.mqtt.SslContextCreator;
 import com.dj.iotlite.events.LogEvent;
 
+import net.crtrpt.mqtt.broker.Server;
+import net.crtrpt.mqtt.broker.config.IConfig;
+import net.crtrpt.mqtt.broker.config.MemoryConfig;
+import net.crtrpt.mqtt.broker.security.IAuthenticator;
+import net.crtrpt.mqtt.broker.security.IAuthorizatorPolicy;
+import net.crtrpt.mqtt.broker.subscriptions.Topic;
+import net.crtrpt.mqtt.interception.InterceptHandler;
+
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
@@ -14,12 +22,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-import io.moquette.interception.InterceptHandler;
-import io.moquette.server.Server;
-import io.moquette.server.config.IConfig;
-import io.moquette.server.config.MemoryConfig;
-import io.moquette.spi.impl.subscriptions.Topic;
-import io.moquette.spi.security.IAuthorizator;
 
 @Capability(value="mqtt")
 public class Mqtt implements CapabilityInterface {
@@ -44,16 +46,15 @@ public class Mqtt implements CapabilityInterface {
     @Override
     public void run() throws IOException {
         List<? extends InterceptHandler> userHandlers = Collections.singletonList(new PublisherListener());
-
-        mqttBroker.startServer(config, userHandlers, new SslContextCreator(), new Authenticator(), new IAuthorizator() {
+        mqttBroker.startServer(config, userHandlers, new SslContextCreator(), new Authenticator(), new IAuthorizatorPolicy() {
             @Override
-            public boolean canWrite(Topic topic, String user, String client) {
-                return false;
+            public boolean canWrite(Topic topic, String s, String s1) {
+                return true;
             }
 
             @Override
-            public boolean canRead(Topic topic, String user, String client) {
-                return false;
+            public boolean canRead(Topic topic, String s, String s1) {
+                return true;
             }
         });
     }
